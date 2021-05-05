@@ -173,7 +173,7 @@ discordClient.on('ready', () => {
 })
 discordClient.login(DISCORD_TOK)
 
-const PREFIX = '!';
+const PREFIX = '$';
 const _CMD_HELP        = PREFIX + 'help';
 const _CMD_JOIN        = PREFIX + 'join';
 const _CMD_LEAVE       = PREFIX + 'stop';
@@ -218,12 +218,12 @@ discordClient.on('message', async (msg) => {
         const mapKey = msg.guild.id;
         if (msg.content.trim().toLowerCase() == _CMD_JOIN) {
             if (!msg.member.voice.channelID) {
-                msg.reply('You must join a voice channel in order to summon Tako')
+                msg.reply('You must join a voice channel in order to summon Tako.')
             } else {
                 if (!guildMap.has(mapKey))
                     await connect(msg, mapKey)
                 else
-                    msg.reply('Tako is already in your voice channel')
+                    msg.reply('Tako is already in your voice channel.')
             }
         } else if (msg.content.trim().toLowerCase() == _CMD_LEAVE) {
             if (guildMap.has(mapKey)) {
@@ -232,14 +232,14 @@ discordClient.on('message', async (msg) => {
                 if (val.voice_Connection) val.voice_Connection.disconnect()
                 if (val.musicYTStream) val.musicYTStream.destroy()
                     guildMap.delete(mapKey)
-                msg.reply("D")
+                msg.reply("Tako disconnected.")
             } else {
-                msg.reply("Tako is not connected to a voice channel")
+                msg.reply("Tako is not connected to a voice channel.")
             }
         }
         else if ( PLAY_CMDS.indexOf( msg.content.trim().toLowerCase().split('\n')[0].split(' ')[0] ) >= 0 ) {
             if (!msg.member.voice.channelID) {
-                msg.reply('You must join a voice channel in order to summon Tako')
+                msg.reply('You must join a voice channel in order to summon Tako.')
             } else {
                 if (!guildMap.has(mapKey))
                     await connect(msg, mapKey)
@@ -339,7 +339,7 @@ async function connect(msg, mapKey) {
             if (e) console.log(e);
             guildMap.delete(mapKey);
         })
-        msg.reply('Connected!')
+        msg.reply('Connected.')
     } catch (e) {
         console.log('connect: ' + e)
         msg.reply('Unable to join your voice channel');
