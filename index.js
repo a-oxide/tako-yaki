@@ -202,7 +202,7 @@ const GENRES = {
     'Hip-hop': ['hip-hop', 'hip hop', 'hiphop', 'rap'],
     'Rock': ['rock'],
     'Dance': ['dance'],
-    'EDM': ['techno'],
+    'Techno': ['techno'],
     'Trance': ['trance'],
     'Groove': ['groove'],
     'Classical': ['classical'],
@@ -256,7 +256,7 @@ discordClient.on('message', async (msg) => {
                 val.debug = true;
         }
         else if (msg.content.trim().toLowerCase() == _CMD_TEST) { //VERSION
-            msg.reply('v1.5 loaded')
+            msg.reply('v1.5.1 loaded')
         }
         else if (msg.content.split('\n')[0].split(' ')[0].trim().toLowerCase() == _CMD_LANG) {
             const lang = msg.content.replace(_CMD_LANG, '').trim().toLowerCase()
