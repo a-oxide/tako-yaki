@@ -14,9 +14,9 @@ Tako uses deep learning as well as wit.ai to interpret speech.
 You can use Tako as you would use any other virtual assistant, by saying his key phrase: `music`  
 Examples:  
 ```
-music help
-music play [input]
-music pause
+tako help
+tako play [input]
+tako pause
 ```
 ### Remember:
 There should be little sound before and after the command until it is fulfilled.
