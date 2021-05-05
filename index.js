@@ -506,19 +506,7 @@ async function music_message(message, mapKey) {
                     message.channel.send('Failed processing Spotify link: ' + qry);
                 }
             } else {
-                 try {
-                    const arr = await spotify_tracks_from_search(qry);
-                    console.log(arr.length + ' spotify items from search')
-                    for (let item of arr)
-                        addToQueue(item, mapKey);
-                    message.react(EMOJI_GREEN_CIRCLE)
-                } catch(e) {
-                    console.log('music_message 464:' + e)
-                    message.channel.send('Failed processing Spotify search: ' + qry);
-                }
-            } else {
-//insert isSpotify and await FLAG
-                
+              //FLAG
                 if (isYoutube(qry) && isYoutubePlaylist(qry)) {
                     try {
                         const arr = await youtube_tracks_from_playlist(qry);
@@ -1155,27 +1143,6 @@ async function spotify_tracks_from_playlist(spotifyurl) {
         })
         .catch(function(err) {
             console.error('spotify_tracks_from_playlist: ' + err);
-        });
-
-    return arr;
-}
-
-async function spotify_tracks_from_search(qry) {
-
-    let arr = await spotifyClient
-        .request('https://api.spotify.com/v1/search?q=' + qry + '&type=track&limit=1')
-        .then(function(data) {
-            let arr = [];
-            if ('tracks' in data) {
-                for (let item of data.tracks) {
-                    let track = spotify_extract_trackname(item)
-                    arr.push(track)
-                }
-            }
-            return arr;
-        })
-        .catch(function(err) {
-            console.error('spotify_recommended: ' + err);
         });
 
     return arr;
