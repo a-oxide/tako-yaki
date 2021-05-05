@@ -30,12 +30,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/healzer/DiscordSpeechBot.git"
+    "url": "git+https://github.com/a-oxide/tako-yaki.git"
   },
-  "author": "Ilja Nevolin",
-  "license": "ISC",
+  "author": "Aidan Rust",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/healzer/DiscordSpeechBot/issues"
+    "url": "https://github.com/a-oxide/tako-yaki"
   },
-  "homepage": "https://github.com/healzer/DiscordSpeechBot#readme"
+  "homepage": "https://github.com/a-oxide/tako-yaki/blob/master/README.md"
 }
