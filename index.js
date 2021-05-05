@@ -404,6 +404,9 @@ function process_commands_query(query, mapKey, userid) {
             case 'skip':
                 out = _CMD_SKIP;
                 break;
+            case 'scape':
+                out = _CMD_SKIP;
+                break;
             case 'shuffle':
                 out = _CMD_SHUFFLE;
                 break;
