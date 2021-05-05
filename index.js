@@ -176,7 +176,7 @@ discordClient.login(DISCORD_TOK)
 const PREFIX = '!';
 const _CMD_HELP        = PREFIX + 'help';
 const _CMD_JOIN        = PREFIX + 'join';
-const _CMD_LEAVE       = PREFIX + 'leave';
+const _CMD_LEAVE       = PREFIX + 'stop';
 const _CMD_PLAY        = PREFIX + 'play';
 const _CMD_PAUSE       = PREFIX + 'pause';
 const _CMD_RESUME      = PREFIX + 'resume';
@@ -195,7 +195,7 @@ const _CMD_TEST        = PREFIX + 'hello';
 const _CMD_LANG        = PREFIX + 'lang';
 const PLAY_CMDS = [_CMD_PLAY, _CMD_PAUSE, _CMD_RESUME, _CMD_SHUFFLE, _CMD_SKIP, _CMD_GENRE, _CMD_GENRES, _CMD_RANDOM, _CMD_CLEAR, _CMD_QUEUE, _CMD_FAVORITE, _CMD_FAVORITES, _CMD_UNFAVORITE];
 
-const EMOJI_GREEN_CIRCLE = '🟢'
+const EMOJI_GREEN_CIRCLE = '👍'
 const EMOJI_RED_CIRCLE = '🔴'
 
 const GENRES = {
@@ -218,12 +218,12 @@ discordClient.on('message', async (msg) => {
         const mapKey = msg.guild.id;
         if (msg.content.trim().toLowerCase() == _CMD_JOIN) {
             if (!msg.member.voice.channelID) {
-                msg.reply('Error: please join a voice channel first.')
+                msg.reply('You must join a voice channel in order to summon Tako')
             } else {
                 if (!guildMap.has(mapKey))
                     await connect(msg, mapKey)
                 else
-                    msg.reply('Already connected')
+                    msg.reply('Tako is already in your voice channel')
             }
         } else if (msg.content.trim().toLowerCase() == _CMD_LEAVE) {
             if (guildMap.has(mapKey)) {
@@ -232,14 +232,14 @@ discordClient.on('message', async (msg) => {
                 if (val.voice_Connection) val.voice_Connection.disconnect()
                 if (val.musicYTStream) val.musicYTStream.destroy()
                     guildMap.delete(mapKey)
-                msg.reply("Disconnected.")
+                msg.reply("D")
             } else {
-                msg.reply("Cannot leave because not connected.")
+                msg.reply("Tako is not connected to a voice channel")
             }
         }
         else if ( PLAY_CMDS.indexOf( msg.content.trim().toLowerCase().split('\n')[0].split(' ')[0] ) >= 0 ) {
             if (!msg.member.voice.channelID) {
-                msg.reply('Error: please join a voice channel first.')
+                msg.reply('You must join a voice channel in order to summon Tako')
             } else {
                 if (!guildMap.has(mapKey))
                     await connect(msg, mapKey)
@@ -276,15 +276,15 @@ discordClient.on('message', async (msg) => {
         }
     } catch (e) {
         console.log('discordClient message: ' + e)
-        msg.reply('Error#180: Something went wrong, try again or contact the developers if this keeps happening.');
+        msg.reply('Critical error! Contact usagi#1023');
     }
 })
 
 function getHelpString() {
-    let out = '**VOICE COMMANDS:**\n'
+    let out = '**Voice commands:**\n'
         out += '```'
         out += 'music help\n'
-        out += 'music play [random, favorites, <genre> or query]\n'
+        out += 'music play [random, favorites, <search>, <genre>]\n'
         out += 'music skip\n'
         out += 'music pause/resume\n'
         out += 'music shuffle\n'
@@ -295,7 +295,7 @@ function getHelpString() {
         out += 'music clear list\n';
         out += '```'
 
-        out += '**TEXT COMMANDS:**\n'
+        out += '**Text commands:**\n'
         out += '```'
         out += _CMD_HELP + '\n'
         out += _CMD_JOIN + '/' + _CMD_LEAVE + '\n'
@@ -339,10 +339,10 @@ async function connect(msg, mapKey) {
             if (e) console.log(e);
             guildMap.delete(mapKey);
         })
-        msg.reply('connected!')
+        msg.reply('Connected!')
     } catch (e) {
         console.log('connect: ' + e)
-        msg.reply('Error: unable to join your voice channel.');
+        msg.reply('Unable to join your voice channel');
         throw e;
     }
 }
@@ -489,10 +489,10 @@ async function music_message(message, mapKey) {
                         }
                         message.react(EMOJI_GREEN_CIRCLE)
                     } else {
-                        message.channel.send('No favorites yet.')
+                        message.channel.send('No favorites yet')
                     }
                 } else {
-                    message.channel.send('No favorites yet.')
+                    message.channel.send('No favorites yet')
                 }
             }
             else if (isSpotify(qry)) {
@@ -504,7 +504,7 @@ async function music_message(message, mapKey) {
                     message.react(EMOJI_GREEN_CIRCLE)
                 } catch(e) {
                     console.log('music_message 464:' + e)
-                    message.channel.send('Failed processing spotify link: ' + qry);
+                    message.channel.send('Failed processing Spotify link: ' + qry);
                 }
             } else {
 
@@ -703,7 +703,7 @@ function unFavorite(qry, mapKey, cbok, cberr) {
 }
 
 function getFavoritesString(mapKey) {
-    let out = "------------ favorites ------------\n";
+    let out = "------------ Favorites ------------\n";
     if (mapKey in GUILD_FAVORITES) {
         let arr = GUILD_FAVORITES[mapKey];
         if (arr.length) {
@@ -747,7 +747,7 @@ function message_chunking(msg, MAXL) {
 
 function getQueueString(mapKey) {
     let val = guildMap.get(mapKey);
-    let _message = "------------ queue ------------\n";
+    let _message = "------------ Queue ------------\n";
     if (val.currentPlayingTitle != null)
         _message += '[X] ' + val.currentPlayingTitle + '\n';
     for (let i = 0; i < val.musicQueue.length; i++) {
