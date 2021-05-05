@@ -283,16 +283,16 @@ discordClient.on('message', async (msg) => {
 function getHelpString() {
     let out = '**Voice commands:**\n'
         out += '```'
-        out += 'music help\n'
-        out += 'music play [random, favorites, <search>, <genre>]\n'
-        out += 'music skip\n'
-        out += 'music pause/resume\n'
-        out += 'music shuffle\n'
-        out += 'music genres\n'
-        out += 'music set favorite\n'
-        out += 'music favorites\n'
-        out += 'music list\n'
-        out += 'music clear list\n';
+        out += 'Tako help\n'
+        out += 'Tako play [random, favorites, <search>, <genre>]\n'
+        out += 'Tako skip\n'
+        out += 'Tako pause/resume\n'
+        out += 'Tako shuffle\n'
+        out += 'Tako genres\n'
+        out += 'Tako set favorite\n'
+        out += 'Tako favorites\n'
+        out += 'Tako list\n'
+        out += 'Tako clear list\n';
         out += '```'
 
         out += '**Text commands:**\n'
@@ -392,7 +392,7 @@ function process_commands_query(query, mapKey, userid) {
 
     let out = null;
 
-    const regex = /^music ([a-zA-Z]+)(.+?)?$/;
+    const regex = /^taco ([a-zA-Z]+)(.+?)?$/;
     const m = query.toLowerCase().match(regex);
     if (m && m.length) {
         const cmd = (m[1]||'').trim();
