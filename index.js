@@ -91,7 +91,7 @@ function loadConfig() {
         SPOTIFY_TOKEN_SECRET = process.env.SPOTIFY_TOKEN_SECRET;
     }
     if (!DISCORD_TOK || !WITAPIKEY)
-        throw 'failed loading config #113 missing keys!'
+        throw 'Failed loading config #113 missing keys!'
     
 }
 loadConfig()
@@ -199,14 +199,14 @@ const EMOJI_GREEN_CIRCLE = '👍'
 const EMOJI_RED_CIRCLE = '🔴'
 
 const GENRES = {
-    'hip-hop': ['hip-hop', 'hip hop', 'hiphop', 'rap'],
-    'rock': ['rock'],
-    'dance': ['dance'],
-    'trance': ['techno'],
-    'trance': ['trance'],
-    'groove': ['groove'],
-    'classical': ['classical'],
-    'techno': ['techno'],
+    'Hip-hop': ['hip-hop', 'hip hop', 'hiphop', 'rap'],
+    'Rock': ['rock'],
+    'Dance': ['dance'],
+    'EDM': ['techno'],
+    'Trance': ['trance'],
+    'Groove': ['groove'],
+    'Classical': ['classical'],
+    'Techno': ['techno'],
 
 }
 
@@ -592,7 +592,7 @@ async function music_message(message, mapKey) {
 
         } else if (args[0] == _CMD_GENRES) {
 
-            let out = "------------ genres ------------\n";
+            let out = "------------ Genres ------------\n";
             for (let g of Object.keys(GENRES)) {
                 out += g + '\n'
             }
