@@ -206,7 +206,6 @@ const GENRES = {
     'Trance': ['trance'],
     'Groove': ['groove'],
     'Classical': ['classical'],
-    'Techno': ['techno'],
 
 }
 
