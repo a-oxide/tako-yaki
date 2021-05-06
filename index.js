@@ -1,6 +1,4 @@
-//////////////////////////////////////////
-//////////////// LOGGING /////////////////
-//////////////////////////////////////////
+//Logging and data flow
 function getCurrentDateString() {
     return (new Date()).toISOString() + ' ::';
 };
@@ -9,10 +7,6 @@ console.log = function () {
     var args = [].slice.call(arguments);
     __originalLog.apply(console.log, [getCurrentDateString()].concat(args));
 };
-//////////////////////////////////////////
-//////////////////////////////////////////
-
-
 
 const fs = require('fs');
 const util = require('util');
@@ -20,10 +14,7 @@ const path = require('path');
 const request = require('request');
 const { Readable } = require('stream');
 
-//////////////////////////////////////////
-///////////////// VARIA //////////////////
-//////////////////////////////////////////
-
+//variables and functions
 function necessary_dirs() {
     if (!fs.existsSync('./data/')){
         fs.mkdirSync('./data/');
@@ -61,14 +52,8 @@ async function convert_audio(input) {
         throw e;
     }
 }
-//////////////////////////////////////////
-//////////////////////////////////////////
-//////////////////////////////////////////
 
-
-//////////////////////////////////////////
-//////////////// CONFIG //////////////////
-//////////////////////////////////////////
+//configuration and server keys
 
 const SETTINGS_FILE = 'settings.json';
 
@@ -160,9 +145,7 @@ function updateWitAIAppLang(appID, lang, cb) {
     req.end()
 }
 
-//////////////////////////////////////////
-//////////////////////////////////////////
-//////////////////////////////////////////
+//discord.js initialization and processes
 
 
 const Discord = require('discord.js')
@@ -385,12 +368,15 @@ function speak_impl(voice_Connection, mapKey) {
     })
 }
 
+//audio processing
+
 function process_commands_query(query, mapKey, userid) {
     if (!query || !query.length)
         return;
 
     let out = null;
 
+    
     const regex = /^taco ([a-zA-Z]+)(.+?)?$/;
     const m = query.toLowerCase().match(regex);
     if (m && m.length) {
@@ -424,9 +410,6 @@ function process_commands_query(query, mapKey, userid) {
                     out = _CMD_CLEAR;
                 break;
             case 'list':
-                out = _CMD_QUEUE;
-                break;
-            case 'q':
                 out = _CMD_QUEUE;
                 break;
             case 'hello':
@@ -782,8 +765,6 @@ async function queueTryPlayNext(mapKey, cbok, cberr) {
         const ytid = data.id;
         const title = data.title;
 
-        // lag or stuttering? try this first!
-        // https://groovy.zendesk.com/hc/en-us/articles/360023031772-Laggy-Glitchy-Distorted-No-Audio
         val.currentPlayingTitle = title;
         val.currentPlayingQuery = qry;
         val.musicYTStream = ytdl('https://www.youtube.com/watch?v=' + ytid, {
@@ -872,9 +853,7 @@ function shuffleMusic(mapKey, cbok, cberr) {
 }
 
 
-//////////////////////////////////////////
-//////////////// SPEECH //////////////////
-//////////////////////////////////////////
+//Wit.ai transcription and data aggragation. Data processed via Heroku
 async function transcribe(buffer) {
 
   return transcribe_witai(buffer)
@@ -951,14 +930,8 @@ async function transcribe_gspeech(buffer) {
   } catch (e) { console.log('transcribe_gspeech 368:' + e) }
 }
 
-//////////////////////////////////////////
-//////////////////////////////////////////
-//////////////////////////////////////////
+//Youtube API and simplification
 
-
-//////////////////////////////////////////
-//////////////// YOUTUBE /////////////////
-//////////////////////////////////////////
 let YT_CACHE = {};
 const ytdl = require('ytdl-core');
 const getYoutubeID = require('get-youtube-id');
@@ -1054,14 +1027,8 @@ function load_yt_cache() {
     }
 }
 load_yt_cache();
-//////////////////////////////////////////
-//////////////////////////////////////////
-//////////////////////////////////////////
 
-
-//////////////////////////////////////////
-//////////////// SPOTIFY /////////////////
-//////////////////////////////////////////
+//Spotify API and simplification
 const Spotify = require('node-spotify-api');
 const spotifyClient = new Spotify({
     id: SPOTIFY_TOKEN_ID,
@@ -1154,6 +1121,4 @@ async function spotify_tracks_from_playlist(spotifyurl) {
     return arr;
 }
 
-//////////////////////////////////////////
-//////////////////////////////////////////
-//////////////////////////////////////////
+//todo: run data through Nigiri for faster processing. Make sure to set seeds differently for both bots
