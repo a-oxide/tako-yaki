@@ -391,7 +391,7 @@ function process_commands_query(query, mapKey, userid) {
 
     let out = null;
 
-    const regex = /^taco ([a-zA-Z]+)(.+?)?$/; //audio recognition module
+    const regex = /^taco ([a-zA-Z]+)(.+?)?$/;
     const m = query.toLowerCase().match(regex);
     if (m && m.length) {
         const cmd = (m[1]||'').trim();
@@ -424,12 +424,6 @@ function process_commands_query(query, mapKey, userid) {
                     out = _CMD_CLEAR;
                 break;
             case 'list':
-                out = _CMD_QUEUE;
-                break;
-            case 'queue';
-                out = _CMD_QUEUE;
-                break;
-             case 'q';
                 out = _CMD_QUEUE;
                 break;
             case 'hello':
