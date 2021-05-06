@@ -426,6 +426,9 @@ function process_commands_query(query, mapKey, userid) {
             case 'list':
                 out = _CMD_QUEUE;
                 break;
+            case 'q':
+                out = _CMD_QUEUE;
+                break;
             case 'hello':
                 out = 'Hello!'
                 break;
