@@ -1,6 +1,9 @@
 # Takoyaki
 Tako-yaki, or Tako for short is an audio recognition and data aggregation tool developed using the DiscordSpeechBot and the AI speech data provided by Nigiri-private.
 
+## Annoucements
+Tako-yaki is currently having trouble with compressed audio, and the new compression method used by Discord especially. I have ceased development after my initial release and currently have no reason to re-train and convert all the previously stored audio files. Wit.ai text-to-speech is still functional, but it's in no way perfect. The bot is still functional as a music player but has no unique features and no further official support as of 6/24
+
 ## Approved Usage
 Currently Tako-yaki is only approved for usage on the official Nigiri Testing Discord as well as the Hunnic Empire Discord. Any further usage can be denied or revoked at any point.
 
