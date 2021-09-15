@@ -24,6 +24,6 @@ tako pause
 ### Remember:
 There should be little sound before and after the command until it is fulfilled.
 ## Developer to-dos
-Create a more complex ytdl search algorithm to sift out music videos and false results. 
-Find a way to automatically train wit.ai. 
-Import the entirity of data from Nigiri. 
+Create a more complex ytdl search algorithm to sift out music videos and false results.  
+Find a way to automatically train wit.ai.  
+Import the entirity of data from Nigiri.  
