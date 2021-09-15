@@ -2,7 +2,7 @@
 Tako-yaki, or Tako for short is an audio recognition and data aggregation tool developed using the DiscordSpeechBot and the AI speech data provided by Nigiri-private.
 
 ## Annoucements
-Tako-yaki is currently having trouble with compressed audio, and the new compression method used by Discord especially. I have ceased development after my initial release and currently have no reason to re-train and convert all the previously stored audio files. Wit.ai text-to-speech is still functional, but it's in no way perfect. The bot is still functional as a music player but has no unique features and no further official support as of 6/24
+Version 1.0.4 is live! Tako-yaki (should) now be functional again after the ytdl search algorithm stopped working suddenly. Tako should continue to be supported for a minimum of 6 months, with greater uptime and automatic bug fixing!
 
 ## Approved Usage
 Currently Tako-yaki is only approved for usage on the official Nigiri Testing Discord as well as the Hunnic Empire Discord. Any further usage can be denied or revoked at any point.
@@ -13,7 +13,7 @@ You can summon Tako to current voice channel with `$join`
 You can remove Tako from your voice channel with `$leave`  
 
 ### Voice commands
-Tako uses deep learning as well as wit.ai to interpret speech.  
+Tako uses active learning as well as the wit.ai API to interpret speech.  
 You can use Tako as you would use any other virtual assistant, by saying his key phrase: `tako`  
 Examples:  
 ```
@@ -24,6 +24,6 @@ tako pause
 ### Remember:
 There should be little sound before and after the command until it is fulfilled.
 ## Developer to-dos
-Implement Mozilla Deepspeech  
-Implement a permissions system  
-Implement a moderation tool  
+Create a more complex ytdl search algorithm to sift out music videos and false results
+Find a way to automatically train wit.ai
+Import the entirity of data from Nigiri
