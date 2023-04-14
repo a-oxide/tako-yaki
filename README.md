@@ -1,4 +1,7 @@
-# Takoyaki
+# Archive Notice
+After a couple years of usage, my server hosting proivder (Heroku) has decided to remove their free plan. As I don't regularly use this bot, I have decided to take it offline and archive this repository. The code should still be functional, however I cannot provide any guarantees or active support. Thank you to healzer for the idea and the documentation to help me make this project a reality. 
+
+## Takoyaki
 Tako-yaki, or Tako for short is an audio playing and voice recognition tool developed using the DiscordSpeechBot and the AI speech data provided by Nigiri-private.  Currently Tako only can be used as a Discord Bot or directly through Dialogflow.
 
 ## Annoucements
